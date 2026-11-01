@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Midnight Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Lato:wght@300;400&family=Noto+Serif+Thai:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#050b1f; --deep:#0d1b4c; --glow:#4a78ff; --mauve:#c9a5a5;
+  --text:#eaeefc; --glass:rgba(255,255,255,.07); --line:rgba(150,180,255,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Lato','Noto Serif Thai',sans-serif; color:var(--text); line-height:1.7;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(74,120,255,.25), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(201,165,165,.12), transparent 45%),
+    var(--navy);
+  background-attachment:fixed;
+}
+/* stars */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px,#fff,transparent),
+    radial-gradient(1px 1px at 90px 120px,#cfe0ff,transparent),
+    radial-gradient(1.5px 1.5px at 160px 60px,#fff,transparent),
+    radial-gradient(1px 1px at 230px 180px,#fff,transparent);
+  background-size:260px 220px; opacity:.6;
+}
+h1,h2,h3{font-family:'Cormorant Garamond','Noto Serif Thai',serif;font-weight:300}
+a{color:inherit;text-decoration:none}
+section{padding:90px 6vw;max-width:1200px;margin:auto}
+.title{text-align:center;font-size:2.6rem;letter-spacing:.12em;margin-bottom:10px}
+.sub{text-align:center;color:var(--mauve);letter-spacing:.3em;font-size:.75rem;text-transform:uppercase;margin-bottom:50px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(10px);
+  box-shadow:0 0 30px rgba(74,120,255,.12)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+  padding:16px 6vw;background:rgba(5,11,31,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;letter-spacing:.2em}
+nav ul{display:flex;gap:28px;list-style:none;font-size:.85rem;letter-spacing:.1em}
+nav ul a:hover{color:var(--mauve)}
+.btn{display:inline-block;padding:10px 26px;border-radius:30px;background:var(--mauve);color:var(--navy);
+  font-size:.85rem;letter-spacing:.1em;transition:.3s}
+.btn:hover{box-shadow:0 0 22px var(--mauve);transform:translateY(-2px)}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:90px 6vw 0}
+.hero-box{width:100%;max-width:1200px;min-height:68vh;text-align:center;padding:60px 5vw;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(rgba(5,11,31,.55),rgba(5,11,31,.75)),
+  url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1600') center/cover}
+.tag{background:rgba(201,165,165,.35);padding:4px 40px;letter-spacing:.5em;font-size:.8rem;margin-bottom:10px}
+.hero h1{font-size:clamp(3.5rem,11vw,8rem);line-height:1.05;text-shadow:0 0 40px rgba(74,120,255,.7)}
+.hero p{max-width:560px;margin:18px 0 30px;opacity:.85}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{width:100%;border-radius:22px;border:1px solid var(--line);height:420px;object-fit:cover}
+.about h2{font-size:2.4rem;margin-bottom:16px}
+.about p{opacity:.85;margin-bottom:12px}
+
+/* tabs + menu */
+.tabs{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:8px;border-radius:12px;
+  background:rgba(201,165,165,.3);margin-bottom:40px}
+.tabs button{border:0;background:none;color:var(--text);padding:8px 28px;border-radius:10px;cursor:pointer;
+  font-family:inherit;letter-spacing:.15em;transition:.3s}
+.tabs button.active{background:rgba(5,11,31,.55);box-shadow:0 0 12px var(--glow)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.card{padding:14px;transition:.35s}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 36px rgba(74,120,255,.4)}
+.card img{width:100%;height:210px;object-fit:cover;border-radius:16px}
+.card h3{margin:14px 0 4px;text-align:center;font-size:1.4rem;letter-spacing:.1em;background:rgba(201,165,165,.28);border-radius:6px;padding:4px}
+.card p{font-size:.85rem;text-align:center;opacity:.8;padding:6px 8px}
+.price{display:block;text-align:center;color:var(--mauve);padding-bottom:8px}
+.card.hide{display:none}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.gallery img{width:100%;height:240px;object-fit:cover;border-radius:18px;border:1px solid var(--line);transition:.4s}
+.gallery img:hover{transform:scale(1.03);box-shadow:0 0 28px rgba(74,120,255,.45)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:40px}
+.contact h3{font-size:1.6rem;margin-bottom:12px}
+.contact li{list-style:none;margin-bottom:8px;opacity:.9}
+iframe{width:100%;height:260px;border:0;border-radius:16px;filter:invert(.9) hue-rotate(180deg) brightness(.9)}
+footer{text-align:center;padding:26px;margin:0 6vw 30px;border-radius:18px;background:rgba(201,165,165,.3);font-size:.85rem;letter-spacing:.1em}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:1s}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:800px){
+  nav ul{display:none}
+  .about,.contact{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="logo">MIDNIGHT</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn">Reserve</a>
+</nav>
+
+<header class="hero" id="home">
+  <div class="glass hero-box reveal">
+    <span class="tag">CAFÉ &amp; BAKERY</span>
+    <h1>Midnight</h1>
+    <p>กาแฟหอมกรุ่นและขนมอบสไตล์ยุโรป ท่ามกลางบรรยากาศยามค่ำคืนที่แสนอบอุ่น</p>
+    <a href="#menu" class="btn">ดูเมนู</a>
+  </div>
+</header>
+
+<section id="about" class="about reveal">
+  <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=900" alt="Midnight café">
+  <div>
+    <h2>เรื่องราวของเรา</h2>
+    <p>Midnight เกิดจากความรักในคาเฟ่เล็กๆ ริมถนนของยุโรป แสงไฟสลัว กลิ่นกาแฟ และเสียงเพลงเบาๆ</p>
+    <p>เราคั่วเมล็ดกาแฟเอง อบครัวซองต์สดทุกเช้า และเปิดให้บริการยามค่ำคืน สำหรับคนที่ชอบความสงบ</p>
+  </div>
+</section>
+
+<section id="menu">
+  <h2 class="title reveal">MENU</h2>
+  <p class="sub reveal">Coffee · Bakery · Dessert</p>
+  <div class="tabs reveal">
+    <button class="active" data-f="all">ALL</button>
+    <button data-f="coffee">COFFEE</button>
+    <button data-f="bakery">BAKERY</button>
+    <button data-f="dessert">DESSERT</button>
+  </div>
+  <div class="grid">
+    <article class="glass card reveal" data-c="coffee">
+      <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600" alt="">
+      <h3>ESPRESSO</h3><p>เข้มข้น หอมกลิ่นคั่วกลางถึงเข้ม</p><span class="price">฿70</span>
+    </article>
+    <article class="glass card reveal" data-c="coffee">
+      <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600" alt="">
+      <h3>CAFÉ LATTE</h3><p>นมนุ่ม ลาเต้อาร์ตสวยงาม</p><span class="price">฿85</span>
+    </article>
+    <article class="glass card reveal" data-c="bakery">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600" alt="">
+      <h3>CROISSANT</h3><p>ครัวซองต์เนยฝรั่งเศส อบสดใหม่</p><span class="price">฿75</span>
+    </article>
+    <article class="glass card reveal" data-c="bakery">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600" alt="">
+      <h3>SOURDOUGH</h3><p>ขนมปังซาวร์โดว์หมักธรรมชาติ</p><span class="price">฿95</span>
+    </article>
+    <article class="glass card reveal" data-c="dessert">
+      <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600" alt="">
+      <h3>TIRAMISU</h3><p>มาสคาโปนครีมนุ่ม โกโก้เข้ม</p><span class="price">฿120</span>
+    </article>
+    <article class="glass card reveal" data-c="dessert">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600" alt="">
+      <h3>CRÈME BRÛLÉE</h3><p>คัสตาร์ดเนียน หน้าคาราเมลกรอบ</p><span class="price">฿110</span>
+    </article>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2 class="title reveal">GALLERY</h2>
+  <p class="sub reveal">Moments at Midnight</p>
+  <div class="gallery reveal">
+    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600" alt="">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" alt="">
+    <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=600" alt="">
+    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600" alt="">
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="title reveal">CONTACT</h2>
+  <p class="sub reveal">Visit us tonight</p>
+  <div class="glass contact reveal">
+    <div>
+      <h3>ติดต่อเรา</h3>
+      <ul>
+        <li>📍 123 ถนนตัวอย่าง กรุงเทพฯ</li>
+        <li>🕕 ทุกวัน 16:00 – 02:00 น.</li>
+        <li>📞 02-123-4567</li>
+        <li>✉️ hello@midnightcafe.com</li>
+        <li>IG · Facebook: @midnightcafe</li>
+      </ul>
+    </div>
+    <iframe src="https://www.google.com/maps?q=Bangkok&output=embed" loading="lazy" title="map"></iframe>
+  </div>
+</section>
+
+<footer>© 2026 MIDNIGHT CAFÉ · Made with ☕ and starlight</footer>
+
+<script>
+// fade-in on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// menu filter
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',b.dataset.f!=='all'&&c.dataset.c!==b.dataset.f));
+});
+</script>
+</body>
+</html>
